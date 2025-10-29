@@ -2,224 +2,218 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Streamly — A Netflix-inspired Landing Page</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TripNest — Book Flights & Hotels</title>
+  <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Rubik:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#0b0b0f;
-      --card:#141417;
-      --muted:#9aa0a6;
-      --accent:#e50914; /* netflix red */
-      --glass: rgba(255,255,255,0.05);
-      --max-width:1200px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;}
-    body{
-      margin:0;
-      font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-      background: linear-gradient(180deg,#071018 0%, #0b0b0f 45%);
-      color:#fff;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-    }
-
-    /* Top navigation */
-    .nav{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:20px 32px;
-      position:sticky;
-      top:0;
-      z-index:40;
-      backdrop-filter: blur(6px);
-      background: linear-gradient(180deg, rgba(11,11,11,0.72), rgba(11,11,11,0.28));
-    }
-    .nav .brand{
-      display:flex;align-items:center;gap:12px;
-    }
-    .logo{
-      width:110px;font-weight:800;font-family:Rubik, sans-serif;color:var(--accent);letter-spacing:1px;font-size:22px
-    }
-    .nav .actions{display:flex;gap:12px;align-items:center}
-    .btn{background:var(--accent);padding:8px 14px;border-radius:6px;font-weight:600;border:none;color:white;cursor:pointer}
-    .ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:6px}
-
-    /* Hero area */
-    .hero{
-      max-width:var(--max-width);
-      margin:28px auto 40px;
-      padding:28px;
-      display:grid;
-      grid-template-columns:1fr 360px;
-      gap:24px;
-      align-items:center;
-    }
-    .hero-card{
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
-      border-radius:12px;padding:28px;box-shadow:0 6px 30px rgba(0,0,0,0.6);
-      position:relative;overflow:hidden
-    }
-    .hero-poster{position:absolute;right:0;top:0;height:100%;width:45%;background-image:url('https://images.unsplash.com/photo-1517604931442-1c6a2f8e1b60?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=6f7b0772c0bd2d7b5a7f93fa1d2a4e1b');background-size:cover;background-position:center;filter:grayscale(20%) brightness(.55);transform:translateX(12%);border-radius:0 12px 12px 0}
-    .hero h1{font-size:34px;margin:0 0 8px}
-    .hero p{color:var(--muted);margin:0 0 16px}
-
-    .search-box{display:flex;gap:8px}
-    .search-box input{flex:1;padding:12px 14px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:inherit}
-
-    /* Content rows */
-    .container{max-width:var(--max-width);margin:0 auto;padding:0 22px}
-    .row{margin:24px 0}
-    .row h2{font-size:18px;margin:0 0 12px}
-    .cards{
-      display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px
-    }
-    .card{
-      background:var(--card);border-radius:8px;overflow:hidden;position:relative;cursor:pointer;transition:transform .22s ease, box-shadow .22s ease;
-      min-height:100px;
-    }
-    .card img{width:100%;height:230px;object-fit:cover;display:block}
-    .card .meta{padding:10px}
-    .card h3{margin:0;font-size:14px}
-    .card p{margin:6px 0 0;color:var(--muted);font-size:12px}
-    .card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(0,0,0,0.6)}
-
-    /* small badges */
-    .badge{position:absolute;left:8px;top:8px;background:rgba(0,0,0,0.45);padding:6px 8px;border-radius:6px;font-size:12px}
-
-    /* Responsive */
-    @media (max-width:900px){
-      .hero{grid-template-columns:1fr;}
-      .hero-poster{display:none}
-      .nav{padding:12px}
-      .logo{width:92px}
-      .cards{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
-    }
-
-    @media (max-width:480px){
-      .nav{padding:10px}
-      .hero h1{font-size:22px}
-      .card img{height:160px}
-    }
-
-    /* Footer */
-    footer{color:var(--muted);padding:40px 22px;text-align:center}
-
-    /* small utility */
-    .pill{background:var(--glass);padding:6px 8px;border-radius:6px;font-size:13px}
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <nav class="nav">
-    <div class="brand">
-      <div class="logo">STREAMLY</div>
-      <div class="pill">Watch anywhere · Cancel anytime</div>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden>
+          <path d="M2 12L22 2l-8 20-4-10-8-0z" fill="#1e90ff"/>
+        </svg>
+        <span>TripNest</span>
+      </a>
+
+      <nav class="nav">
+        <a href="#">Flights</a>
+        <a href="#">Hotels</a>
+        <a href="#">Trains</a>
+        <a href="#">Holidays</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="login-btn">Log in</button>
+        <button class="signup-btn">Sign up</button>
+        <button class="burger" aria-label="menu" id="burgerBtn">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
-    <div class="actions">
-      <button class="ghost">Browse</button>
-      <button class="ghost">Kids</button>
-      <button class="btn">Sign In</button>
-    </div>
-  </nav>
+  </header>
 
   <main>
     <section class="hero">
-      <div class="hero-card">
-        <h1>Unlimited movies, TV shows, and more.</h1>
-        <p>Watch anywhere. Pick your favorite titles and start streaming instantly.</p>
-        <div class="search-box">
-          <input placeholder="Search for shows, movies, genres..." />
-          <button class="btn">Search</button>
-        </div>
-        <div style="margin-top:16px;color:var(--muted);font-size:14px">Top genres: <strong style="color:white">Thriller</strong>, <strong style="color:white">Drama</strong>, <strong style="color:white">Sci-Fi</strong></div>
-      </div>
-      <aside>
-        <div style="background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:20px;border-radius:12px;min-height:160px">
-          <h3 style="margin:0 0 8px">Continue Watching</h3>
-          <div style="display:flex;gap:10px;align-items:center">
-            <img src="https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&s=3b6e6f8b3b1dfd4c2a6b" style="width:96px;height:64px;object-fit:cover;border-radius:6px" />
-            <div>
-              <div style="font-weight:600">Dark Horizon</div>
-              <div style="color:var(--muted);font-size:13px">S2 · Ep 4 · 24m left</div>
+      <div class="container hero-grid">
+        <div class="hero-left">
+          <h1>Find cheap flights, hotels & holiday deals</h1>
+          <p>Search, compare and book your travel in seconds. Best prices & flexible options.</p>
+
+          <div class="search-card">
+            <div class="tabs">
+              <button class="tab active" data-tab="flights">Flights</button>
+              <button class="tab" data-tab="hotels">Hotels</button>
+              <button class="tab" data-tab="packages">Packages</button>
             </div>
+
+            <form class="search-form" id="searchForm" autocomplete="off">
+              <div class="row">
+                <label>
+                  <span class="label">From</span>
+                  <input type="text" name="from" placeholder="City or airport" required value="Mumbai (BOM)">
+                </label>
+
+                <label>
+                  <span class="label">To</span>
+                  <input type="text" name="to" placeholder="City or airport" required value="Delhi (DEL)">
+                </label>
+              </div>
+
+              <div class="row">
+                <label>
+                  <span class="label">Depart</span>
+                  <input type="date" name="depart" required value="">
+                </label>
+
+                <label>
+                  <span class="label">Return</span>
+                  <input type="date" name="return">
+                </label>
+
+                <label>
+                  <span class="label">Passengers</span>
+                  <select name="pax">
+                    <option>1 Adult</option>
+                    <option>2 Adults</option>
+                    <option>3 Adults</option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="row actions">
+                <button type="submit" class="btn primary">Search</button>
+                <button type="button" class="btn ghost">More filters</button>
+              </div>
+            </form>
           </div>
         </div>
-      </aside>
+
+        <div class="hero-right">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1400&auto=format&fit=crop&crop=entropy" alt="Beach" />
+        </div>
+      </div>
     </section>
 
-    <section class="container">
-      <div class="row">
-        <h2>Trending Now</h2>
-        <div class="cards">
-          <div class="card">
-            <span class="badge">New</span>
-            <img src="https://images.unsplash.com/photo-1517604931442-1c6a2f8e1b60?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=6f7b0772c0bd2d7b5a7f93fa1d2a4e1b" alt="poster">
-            <div class="meta"><h3>Crimson Edge</h3><p>Action · 1h 58m</p></div>
+    <section class="section container">
+      <h2>Popular destinations</h2>
+      <div class="cards-grid">
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1505765059373-7c9f2aa2b5b7?q=80&w=800&auto=format&fit=crop&crop=entropy" alt="Goa">
+          <div class="card-body">
+            <h3>Goa</h3>
+            <p>Flights from ₹2,499 • Beaches & nightlife</p>
           </div>
+        </article>
 
-          <div class="card">
-            <img src="https://images.unsplash.com/photo-1534790566855-4cb788d389ec?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=6ad5e4a8d5f9b1df86d3" alt="poster">
-            <div class="meta"><h3>Silent City</h3><p>Thriller · 2h 4m</p></div>
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?q=80&w=800&auto=format&fit=crop&crop=entropy" alt="Manali">
+          <div class="card-body">
+            <h3>Manali</h3>
+            <p>Hills & adventure • Hotels from ₹1,199</p>
           </div>
+        </article>
 
-          <div class="card">
-            <img src="https://images.unsplash.com/photo-1542204165-5d9f6a64b552?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=2c0e3a7e2d6c467bddb4" alt="poster">
-            <div class="meta"><h3>Neon Streets</h3><p>Sci-Fi · 3 Seasons</p></div>
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1502920917128-1aa500764b43?q=80&w=800&auto=format&fit=crop&crop=entropy" alt="Jaipur">
+          <div class="card-body">
+            <h3>Jaipur</h3>
+            <p>Heritage stays & palaces • Weekend-friendly</p>
           </div>
+        </article>
 
-          <div class="card">
-            <img src="https://images.unsplash.com/photo-1502139214981-8f0e3e5d6f1b?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=9a6c8d4b4e5a7f1c2d3e" alt="poster">
-            <div class="meta"><h3>Haunted Vale</h3><p>Horror · 1 Season</p></div>
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1511732351912-9be9c2f795d7?q=80&w=800&auto=format&fit=crop&crop=entropy" alt="Andaman">
+          <div class="card-body">
+            <h3>Andaman</h3>
+            <p>Scuba & coral reefs • Holiday packages</p>
           </div>
+        </article>
+      </div>
+    </section>
 
-          <div class="card">
-            <img src="https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=3b6e6f8b3b1dfd4c2a6b" alt="poster">
-            <div class="meta"><h3>Midnight Run</h3><p>Crime · 2h 12m</p></div>
+    <section class="section deals">
+      <div class="container">
+        <h2>Hot deals for you</h2>
+        <div class="deals-grid">
+          <div class="deal">
+            <h3>Flat 30% off on hotels</h3>
+            <p>Use code: HOTEL30 • Valid until 30 Nov</p>
+            <button class="btn">Book now</button>
           </div>
-
-          <div class="card">
-            <img src="https://images.unsplash.com/photo-1511765224389-37f0e77cf0eb?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=87a6f3f5b9f0c4c7d2a6" alt="poster">
-            <div class="meta"><h3>Hidden Truths</h3><p>Documentary · 90m</p></div>
+          <div class="deal">
+            <h3>Domestic flight sale</h3>
+            <p>One-way fares from ₹999 • Limited seats</p>
+            <button class="btn">Explore</button>
           </div>
-
+          <div class="deal">
+            <h3>Couple getaway packages</h3>
+            <p>Romantic stays starting ₹4,499</p>
+            <button class="btn">View packages</button>
+          </div>
         </div>
       </div>
-
-      <div class="row">
-        <h2>Because you watched "Dark Horizon"</h2>
-        <div class="cards">
-          <!-- repeat cards as needed -->
-          <div class="card"><img src="https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=7a2f" alt="poster"><div class="meta"><h3>Afterlight</h3><p>Drama · 2h</p></div></div>
-          <div class="card"><img src="https://images.unsplash.com/photo-1508341596272-8b0f3f7b7f3a?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=6b3f" alt="poster"><div class="meta"><h3>Edge of Silence</h3><p>Thriller · 1h 50m</p></div></div>
-          <div class="card"><img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=3c4b" alt="poster"><div class="meta"><h3>Pulse</h3><p>Sci-Fi · 3 Seasons</p></div></div>
-          <div class="card"><img src="https://images.unsplash.com/photo-1526045612212-70caf35c14df?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=1d2a" alt="poster"><div class="meta"><h3>Last Call</h3><p>Comedy · 1h 30m</p></div></div>
-        </div>
-      </div>
-
     </section>
   </main>
 
-  <footer>
-    <div style="max-width:var(--max-width);margin:0 auto;padding:0 22px">
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
-        <div>© 2025 Streamly — Not a real streaming service. Demo only.</div>
-        <div style="color:var(--muted)">Contact · Terms · Privacy</div>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h4>TripNest</h4>
+        <p>Trusted travel booking, curated offers, and 24/7 support.</p>
       </div>
+
+      <div>
+        <h4>Company</h4>
+        <a href="#">About us</a>
+        <a href="#">Careers</a>
+        <a href="#">Press</a>
+      </div>
+
+      <div>
+        <h4>Help</h4>
+        <a href="#">Support</a>
+        <a href="#">FAQ</a>
+        <a href="#">Contact</a>
+      </div>
+
+      <div>
+        <h4>Follow</h4>
+        <div class="socials">
+          <a href="#" aria-label="twitter">T</a>
+          <a href="#" aria-label="facebook">F</a>
+          <a href="#" aria-label="instagram">I</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container copyright">
+      <small>© <span id="year"></span> TripNest Pvt. Ltd. All rights reserved.</small>
     </div>
   </footer>
 
   <script>
-    // Small enhancement to make search input focus when pressing /
-    document.addEventListener('keydown', function(e){
-      if(e.key === '/'){
-        e.preventDefault();
-        const input = document.querySelector('.search-box input');
-        if(input) input.focus();
-      }
+    // Basic JS for tabs and burger
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    document.querySelectorAll('.tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        // could switch form fields based on tab if expanded
+      });
+    });
+
+    document.getElementById('burgerBtn').addEventListener('click', () => {
+      document.querySelector('.nav').classList.toggle('open');
+    });
+
+    // Search form submit (demo)
+    document.getElementById('searchForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      alert('Search submitted — implement backend or integrate APIs to get real results.');
     });
   </script>
 </body>
